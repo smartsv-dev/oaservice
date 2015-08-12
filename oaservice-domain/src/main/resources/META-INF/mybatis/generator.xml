@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+
+  <classPathEntry
+      location="C:/Users/bakuskjp/.m2/repository/org/postgresql/postgresql/9.4-1201-jdbc41/postgresql-9.4-1201-jdbc41.jar"/>
+
+  <context id="context1" >
+
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+
+    <jdbcConnection driverClass="org.postgresql.Driver"
+                    connectionURL="jdbc:postgresql://localhost/oaservice"
+                    userId="postgres"
+                    password="postgres" />
+
+    <javaModelGenerator targetPackage="jp.co.smartservice.domain.model"
+                        targetProject="oaservice-domain\src\main\java" />
+
+    <sqlMapGenerator targetPackage="jp.co.smartservice.domain.repository"
+                     targetProject="oaservice-domain\src\main\resources" />
+
+    <javaClientGenerator targetPackage="jp.co.smartservice.domain.repository"
+                         targetProject="oaservice-domain\src\main\java"
+                         type="XMLMAPPER" />
+    <table
+           tableName="todo"
+           enableInsert="true"
+           enableSelectByPrimaryKey="true"
+           enableSelectByExample="true"
+           enableUpdateByPrimaryKey="true"
+           enableUpdateByExample="true"
+           enableDeleteByPrimaryKey="true"
+           enableDeleteByExample="true"
+           enableCountByExample="true"
+           selectByExampleQueryId="true"
+           modelType="hierarchical">
+    </table>
+  </context>
+</generatorConfiguration>

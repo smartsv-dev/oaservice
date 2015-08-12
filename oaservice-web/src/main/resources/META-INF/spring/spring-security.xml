@@ -19,8 +19,43 @@
         <sec:access-denied-handler ref="accessDeniedHandler"/>
         <sec:custom-filter ref="userIdMDCPutFilter" after="ANONYMOUS_FILTER"/>
         <sec:session-management />
+        <sec:form-login
+            login-page="/login"
+            default-target-url="/"
+            login-processing-url="/authenticate"
+            username-parameter="username"
+            password-parameter="password"
+            authentication-failure-handler-ref="authenticationFailureHandler"
+            authentication-success-handler-ref="authenticationSuccessHandler" />
+        <sec:logout
+            logout-url="/logout"
+            logout-success-url="/"
+            delete-cookies="JSESSIONID" />
+        <!--
+        <sec:intercept-url pattern="/login" access="permitAll" />
+        <sec:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/**" access="isAuthenticated()" />
+        <sec:remember-me key="pjservice/ylnHv" remember-me-parameter="remember-me" token-validity-seconds="#{10 * 24 * 60 * 60}" />
+        -->
     </sec:http>
-    <sec:authentication-manager></sec:authentication-manager>
+    <sec:authentication-manager>
+        <sec:authentication-provider user-service-ref="userDetailsService">
+            <sec:password-encoder ref="passwordEncoder" />
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
+    <bean id="authenticationSuccessHandler"
+        class="org.terasoluna.gfw.security.web.redirect.RedirectAuthenticationHandler">
+    </bean>
+    <bean id="authenticationFailureHandler"
+        class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+        <property name="defaultFailureUrl" value="/login?error=true"/>
+        <property name="useForward" value="true"/>
+    </bean>
+
+    <bean id="userDetailsService"
+        class="jp.co.smartservice.domain.service.userdetails.BaseUserDetailsService">
+    </bean>
 
     <!-- CSRF Protection -->
     <bean id="accessDeniedHandler"
