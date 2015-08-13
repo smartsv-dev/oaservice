@@ -17,7 +17,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import jp.co.smartservice.domain.common.constants.DmnConstants;
-import jp.co.smartservice.domain.model.User;
+import jp.co.smartservice.domain.model.T001User;
 import jp.co.smartservice.domain.service.userinfo.UserSharedService;
 
 public class BaseUserDetailsService implements UserDetailsService {
@@ -28,24 +28,31 @@ public class BaseUserDetailsService implements UserDetailsService {
     UserSharedService userSharedService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
         logger.debug("Execute Method loadUserByUsername.");
 
-        User userInfo = userSharedService.findUser(username);
+        T001User userInfo = userSharedService.findUserInfo(userId);
         if (userInfo == null) {
-            throw new UsernameNotFoundException(username + " is not found."); // TODO to property file
+            throw new UsernameNotFoundException(userId + " is not found."); // TODO to property file
         }
 
         String userRole = userInfo.getUserRole();
+        String userRoleStr = null;
 
         if (!DmnConstants.ROLE_USER.equals(userRole) && !DmnConstants.ROLE_ADMIN.equals(userRole)) {
             logger.error("user role: " + userRole + " is not permitted");
             throw new AuthenticationServiceException("user role: " + userRole + " is not permitted");
         }
 
+        if (DmnConstants.ROLE_USER.equals(userRole)) {
+        	userRoleStr = DmnConstants.ROLE_USER_STR;
+        } else if (DmnConstants.ROLE_ADMIN.equals(userRole)) {
+        	userRoleStr = DmnConstants.ROLE_ADMIN_STR;
+        }
+
         BaseUserDetails userDetails = new BaseUserDetails(userInfo, Collections
-                .singletonList(new SimpleGrantedAuthority(userRole)));
+                .singletonList(new SimpleGrantedAuthority(userRoleStr)));
 
         return userDetails;
     }

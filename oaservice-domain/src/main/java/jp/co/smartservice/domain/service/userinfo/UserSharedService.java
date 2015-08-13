@@ -1,8 +1,8 @@
 package jp.co.smartservice.domain.service.userinfo;
 
-import jp.co.smartservice.domain.model.User;
+import jp.co.smartservice.domain.model.T001User;
 
 public interface UserSharedService {
 
-    User findUser(String username);
+    T001User findUserInfo(String userId);
 }

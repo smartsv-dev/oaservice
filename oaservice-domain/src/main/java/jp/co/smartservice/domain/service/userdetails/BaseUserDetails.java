@@ -7,25 +7,26 @@ package jp.co.smartservice.domain.service.userdetails;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
-import jp.co.smartservice.domain.model.User;
+import jp.co.smartservice.domain.model.T001User;
 
-public class BaseUserDetails extends org.springframework.security.core.userdetails.User {
+public class BaseUserDetails extends User {
 
     private static final long serialVersionUID = 1L;
 
-    private final User user;
+    private final T001User userInfo;
 
     /**
      * Calls the more complex constructor with all boolean arguments set to {@code true}.
      */
-    public BaseUserDetails(User user, Collection<? extends GrantedAuthority> authorities) {
+    public BaseUserDetails(T001User userInfo, Collection<? extends GrantedAuthority> authorities) {
 
-        super(user.getUsername(), user.getPassword(), authorities);
-        this.user = user;
+        super(userInfo.getUserId(), userInfo.getPassword(), authorities);
+        this.userInfo = userInfo;
     }
 
-    public User getUser() {
-        return this.user;
+    public T001User getUserInfo() {
+        return this.userInfo;
     }
 }

@@ -22,8 +22,8 @@ import org.terasoluna.gfw.common.message.ResultMessages;
 import jp.co.smartservice.app.todo.TodoForm.TodoCreate;
 import jp.co.smartservice.app.todo.TodoForm.TodoDelete;
 import jp.co.smartservice.app.todo.TodoForm.TodoFinish;
-import jp.co.smartservice.domain.model.Todo;
-import jp.co.smartservice.domain.model.TodoExample;
+import jp.co.smartservice.domain.model.T900Todo;
+import jp.co.smartservice.domain.model.T900TodoExample;
 import jp.co.smartservice.domain.service.todo.TodoService;
 
 @Controller
@@ -36,7 +36,7 @@ public class TodoController {
     @Inject
 	TodoService todoService;
 
-	@ModelAttribute("todoForm")
+	@ModelAttribute
 	public TodoForm setUpTodoForm() {
 		TodoForm form = new TodoForm();
 		return form;
@@ -45,16 +45,16 @@ public class TodoController {
 /*
 	@RequestMapping(value = "list")
 	public String list(Model model) {
-		Collection<Todo> todoList = todoService.findAll();
+		Collection<T900Todo> todoList = todoService.findAll();
 		model.addAttribute("todoList", todoList);
 		return "todo/list";
 	}
 */
 	@RequestMapping(value = "list")
 	public String list(@PageableDefault(10) Pageable pageable, Model model) {
-		TodoExample example = new TodoExample();
+		T900TodoExample example = new T900TodoExample();
 		example.setOrderByClause("created_at DESC");
-		Page<Todo> page = todoService.findPage(example, pageable);
+		Page<T900Todo> page = todoService.findPage(example, pageable);
 		model.addAttribute("page", page);
 		return "todo/list";
 	}
@@ -67,10 +67,10 @@ public class TodoController {
 		if (bingdingResult.hasErrors()) {
 			return list(pageable, model);
 		}
-		Todo todo = beanMapper.map(form, Todo.class);
+		T900Todo T900Todo = beanMapper.map(form, T900Todo.class);
 
         try {
-            todoService.create(todo);
+            todoService.create(T900Todo);
         } catch (BusinessException e) {
             model.addAttribute(e.getResultMessages());
             return list(pageable, model);

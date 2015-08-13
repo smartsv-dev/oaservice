@@ -18,10 +18,10 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
-import jp.co.smartservice.domain.model.Todo;
-import jp.co.smartservice.domain.model.TodoExample;
-import jp.co.smartservice.domain.model.TodoKey;
-import jp.co.smartservice.domain.repository.TodoMapper;
+import jp.co.smartservice.domain.model.T900Todo;
+import jp.co.smartservice.domain.model.T900TodoExample;
+import jp.co.smartservice.domain.model.T900TodoKey;
+import jp.co.smartservice.domain.repository.T900TodoMapper;
 
 @Service
 public class TodoServiceImpl implements TodoService {
@@ -32,25 +32,25 @@ public class TodoServiceImpl implements TodoService {
 	JodaTimeDateFactory dateFactory;
 
 	@Inject
-	TodoMapper todoMapper;
+	T900TodoMapper t900TodoMapper;
 
 	@Override
-	public Collection<Todo> findAll() {
-		TodoExample example = new TodoExample();
-		return todoMapper.selectByExample(example);
+	public Collection<T900Todo> findAll() {
+		T900TodoExample example = new T900TodoExample();
+		return t900TodoMapper.selectByExample(example);
 	}
 
 	@Override
-	public Todo create(Todo todo) {
+	public T900Todo create(T900Todo T900Todo) {
 
-		TodoExample example = new TodoExample();
+		T900TodoExample example = new T900TodoExample();
 		example.createCriteria().andFinishedEqualTo(false);
-		long unfinishedCount = todoMapper.countByExample(example);
+		long unfinishedCount = t900TodoMapper.countByExample(example);
 
 		if (unfinishedCount >= MAX_UNFINISHED_COUNT) {
 			ResultMessages messages = ResultMessages.error();
             messages.add(ResultMessage
-                    .fromText("[E001] The count of un-finished Todo must not be over "
+                    .fromText("[E001] The count of un-finished T900Todo must not be over "
                             + MAX_UNFINISHED_COUNT + "."));
             throw new BusinessException(messages);
 		}
@@ -58,62 +58,62 @@ public class TodoServiceImpl implements TodoService {
 		String todoId = UUID.randomUUID().toString();
 
 		Date createdAt = dateFactory.newDate();
-		todo.setTodoId(todoId);
-		todo.setCreatedAt(createdAt);
-		todo.setFinished(false);
+		T900Todo.setTodoId(todoId);
+		T900Todo.setCreatedAt(createdAt);
+		T900Todo.setFinished(false);
 
-		todoMapper.insert(todo);
+		t900TodoMapper.insert(T900Todo);
 
-		return todo;
+		return T900Todo;
 	}
 
 	@Override
-	public Todo finish(String todoId) {
-		Todo todo = findOne(todoId);
-		if (todo.getFinished()) {
+	public T900Todo finish(String todoId) {
+		T900Todo T900Todo = findOne(todoId);
+		if (T900Todo.getFinished()) {
 			ResultMessages messages = ResultMessages.error();
 			messages.add(ResultMessage
-                    .fromText("[E002] The requested Todo is already finished. (id=" + todoId + ")"));
+                    .fromText("[E002] The requested T900Todo is already finished. (id=" + todoId + ")"));
             throw new BusinessException(messages);
 		}
 
-		todo.setFinished(true);
-		todoMapper.updateByPrimaryKey(todo);
+		T900Todo.setFinished(true);
+		t900TodoMapper.updateByPrimaryKey(T900Todo);
 
-		return todo;
+		return T900Todo;
 	}
 
 	@Override
 	public void delete(String todoId) {
-		Todo todo = findOne(todoId);
-		todoMapper.deleteByPrimaryKey(todo);
+		T900Todo T900Todo = findOne(todoId);
+		t900TodoMapper.deleteByPrimaryKey(T900Todo);
 	}
 
 	@Override
-	public Todo findOne(String todoId) {
-		TodoKey todoKey = new TodoKey();
-		todoKey.setTodoId(todoId);
-		Todo todo = todoMapper.selectByPrimaryKey(todoKey);
-		if (todo == null) {
+	public T900Todo findOne(String todoId) {
+		T900TodoKey T900TodoKey = new T900TodoKey();
+		T900TodoKey.setTodoId(todoId);
+		T900Todo T900Todo = t900TodoMapper.selectByPrimaryKey(T900TodoKey);
+		if (T900Todo == null) {
 			ResultMessages messages = ResultMessages.error();
-			messages.add(ResultMessage.fromText("[E404] The requested Todo is not found. (id=" + todoId + ")"));
+			messages.add(ResultMessage.fromText("[E404] The requested T900Todo is not found. (id=" + todoId + ")"));
 			throw new BusinessException(messages);
 		}
-		return todo;
+		return T900Todo;
 	}
 
 	@Override
-	public Page<Todo> findPage(TodoExample example, Pageable pageable) {
-		long total = todoMapper.countByExample(example);
-		List<Todo> todoList = null;
+	public Page<T900Todo> findPage(T900TodoExample example, Pageable pageable) {
+		long total = t900TodoMapper.countByExample(example);
+		List<T900Todo> todoList = null;
 
 		if (0 < total) {
 			RowBounds rowBounds = new RowBounds(pageable.getOffset(), pageable.getPageSize());
-			todoList = todoMapper.findPageByExample(example, rowBounds);
+			todoList = t900TodoMapper.findPageByExample(example, rowBounds);
 		} else {
 			todoList = Collections.emptyList();
 		}
-		return new PageImpl<Todo>(todoList, pageable, total);
+		return new PageImpl<T900Todo>(todoList, pageable, total);
 	}
 
 }

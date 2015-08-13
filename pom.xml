@@ -11,10 +11,10 @@
         <version>5.0.1.RELEASE</version>
     </parent>
 
-    <name>TERASOLUNA Server Framework for Java (5.x) Web Blank Multi Project (MyBatis3)</name>
-    <description>Web Blank Multi Project (MyBatis3) using TERASOLUNA Server Framework for Java (5.x)</description>
-    <url>http://terasoluna.org</url>
-    <inceptionYear>2014</inceptionYear>
+    <name>oaservice</name>
+    <description>Management System For Company Of Smart Service Co.,Ltd</description>
+    <url>http://www.smartservice.co.jp</url>
+    <inceptionYear>2015</inceptionYear>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -23,8 +23,8 @@
         </license>
     </licenses>
     <organization>
-        <name>TERASOLUNA Framework Team</name>
-        <url>http://terasoluna.org</url>
+        <name>Smart Service Development Team</name>
+        <url>http://www.smartservice.co.jp</url>
     </organization>
     <repositories>
         <repository>

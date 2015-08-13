@@ -24,7 +24,7 @@
                          targetProject="oaservice-domain\src\main\java"
                          type="XMLMAPPER" />
     <table
-           tableName="todo"
+           tableName="t900_todo"
            enableInsert="true"
            enableSelectByPrimaryKey="true"
            enableSelectByExample="true"

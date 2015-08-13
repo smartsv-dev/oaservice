@@ -5,20 +5,20 @@ import java.util.Collection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import jp.co.smartservice.domain.model.Todo;
-import jp.co.smartservice.domain.model.TodoExample;
+import jp.co.smartservice.domain.model.T900Todo;
+import jp.co.smartservice.domain.model.T900TodoExample;
 
 public interface TodoService {
 
-	Todo findOne(String todoId);
+	T900Todo findOne(String todoId);
 
-	Collection<Todo> findAll();
+	Collection<T900Todo> findAll();
 
-	Todo create(Todo todo);
+	T900Todo create(T900Todo todo);
 
-	Todo finish(String todoId);
+	T900Todo finish(String todoId);
 
 	void delete(String todoId);
 
-	Page<Todo> findPage(TodoExample example, Pageable pageable);
+	Page<T900Todo> findPage(T900TodoExample example, Pageable pageable);
 }

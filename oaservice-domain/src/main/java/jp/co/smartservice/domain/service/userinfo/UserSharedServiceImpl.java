@@ -6,8 +6,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.terasoluna.gfw.common.exception.BusinessException;
 
-import jp.co.smartservice.domain.model.User;
-import jp.co.smartservice.domain.repository.UserMapper;
+import jp.co.smartservice.domain.model.T001User;
+import jp.co.smartservice.domain.model.T001UserKey;
+import jp.co.smartservice.domain.repository.T001UserMapper;
 
 @Service
 public class UserSharedServiceImpl implements UserSharedService {
@@ -16,12 +17,14 @@ public class UserSharedServiceImpl implements UserSharedService {
 	PasswordEncoder passwordEncoder;
 
 	@Inject
-	UserMapper userMapper;
+	T001UserMapper userMapper;
 
 	@Override
-	public User findUser(String username) {
+	public T001User findUserInfo(String userId) {
 
-		User user = userMapper.findUserById(username);
+		T001UserKey userKey = new T001UserKey();
+		userKey.setUserId(userId);
+		T001User user = userMapper.selectByPrimaryKey(userKey);
 
 		if (user == null) {
 			throw new BusinessException("user not found!");
@@ -29,7 +32,7 @@ public class UserSharedServiceImpl implements UserSharedService {
 		return user;
 	}
 
-	public String register(User user, String rawPassword) {
+	public String register(T001User user, String rawPassword) {
 	    // omitted
 	    // Password Hashing
 	    String password = passwordEncoder.encode(rawPassword); // (2)
@@ -38,7 +41,7 @@ public class UserSharedServiceImpl implements UserSharedService {
 	    return null;
 	}
 
-	public boolean matches(User user, String rawPassword) {
+	public boolean matches(T001User user, String rawPassword) {
 	    return passwordEncoder.matches(rawPassword, user.getPassword()); // (3)
 	}
 
