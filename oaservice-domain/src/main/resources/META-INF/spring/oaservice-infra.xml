@@ -20,9 +20,9 @@
         <property name="dataSource" ref="dataSource" />
         <property name="sequenceClass" value="java.lang.String" />
         <property name="nextValueQuery"
-            value="SELECT ${user.userKbn} || TO_CHAR(NEXTVAL('seq01_user_id'),'FM000')" />
+            value="SELECT ${user.userIdPrefix} || TO_CHAR(NEXTVAL('seq01_user_id'),'FM000')" />
         <property name="currentValueQuery"
-            value="SELECT ${user.userKbn} || TO_CHAR(CURRVAL('seq01_user_id'),'FM000')" />
+            value="SELECT ${user.userIdPrefix} || TO_CHAR(CURRVAL('seq01_user_id'),'FM000')" />
     </bean>
 
     <!-- scan for Mappers -->
