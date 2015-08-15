@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
  * </p>
  *
  */
-public class StringUtil {
+public class StringHelper {
 
     /**
      * 実行環境のOSで用いられる改行コードを取得する。

@@ -14,6 +14,9 @@ public class JavaTest {
 		System.out.println(isEquals);
 		System.out.println(encodedPassword);
 
+		String value = "20150601";
+		System.out.println(value.replaceAll("[/\\-]", ""));
+
 	}
 
 }

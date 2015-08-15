@@ -63,7 +63,6 @@ public class TodoServiceImpl implements TodoService {
 		T900Todo.setFinished(false);
 
 		t900TodoMapper.insert(T900Todo);
-
 		return T900Todo;
 	}
 

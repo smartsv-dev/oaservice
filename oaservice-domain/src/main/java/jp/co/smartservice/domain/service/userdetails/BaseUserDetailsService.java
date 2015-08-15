@@ -16,9 +16,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import jp.co.smartservice.domain.common.constants.DmnConstants;
+import jp.co.smartservice.domain.common.constants.Constants;
 import jp.co.smartservice.domain.model.T001User;
-import jp.co.smartservice.domain.service.userinfo.UserSharedService;
+import jp.co.smartservice.domain.service.user.UserSharedService;
 
 public class BaseUserDetailsService implements UserDetailsService {
 
@@ -32,7 +32,7 @@ public class BaseUserDetailsService implements UserDetailsService {
 
         logger.debug("Execute Method loadUserByUsername.");
 
-        T001User userInfo = userSharedService.findUserInfo(userId);
+        T001User userInfo = userSharedService.findUser(userId);
         if (userInfo == null) {
             throw new UsernameNotFoundException(userId + " is not found."); // TODO to property file
         }
@@ -40,15 +40,15 @@ public class BaseUserDetailsService implements UserDetailsService {
         String userRole = userInfo.getUserRole();
         String userRoleStr = null;
 
-        if (!DmnConstants.ROLE_USER.equals(userRole) && !DmnConstants.ROLE_ADMIN.equals(userRole)) {
+        if (!Constants.ROLE_USER.equals(userRole) && !Constants.ROLE_ADMIN.equals(userRole)) {
             logger.error("user role: " + userRole + " is not permitted");
             throw new AuthenticationServiceException("user role: " + userRole + " is not permitted");
         }
 
-        if (DmnConstants.ROLE_USER.equals(userRole)) {
-        	userRoleStr = DmnConstants.ROLE_USER_STR;
-        } else if (DmnConstants.ROLE_ADMIN.equals(userRole)) {
-        	userRoleStr = DmnConstants.ROLE_ADMIN_STR;
+        if (Constants.ROLE_USER.equals(userRole)) {
+        	userRoleStr = Constants.ROLE_USER_STR;
+        } else if (Constants.ROLE_ADMIN.equals(userRole)) {
+        	userRoleStr = Constants.ROLE_ADMIN_STR;
         }
 
         BaseUserDetails userDetails = new BaseUserDetails(userInfo, Collections

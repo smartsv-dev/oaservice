@@ -139,6 +139,25 @@
         <property name="from" value="1" />
         <property name="to" value="5" />
     </bean>
+
+    <bean id="CL_GENDER" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <map>
+                <entry key="M" value="男" />
+                <entry key="F" value="女" />
+            </map>
+        </property>
+    </bean>
+
+    <bean id="CL_CONTRACT_TYPE" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <map>
+                <entry key="1" value="正社員" />
+                <entry key="2" value="契約社員" />
+            </map>
+        </property>
+    </bean>
+
     <!--
     <bean id="CL_PREF" parent="AbstractJdbcCodeList">
         <property name="querySql"

@@ -9,10 +9,17 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="スマートサービス株式会社管理システム">
+<meta name="renderer" content="webkit">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <meta name="contextPath" content="${pageContext.request.contextPath}" />
 
-<link href="${pageContext.request.contextPath}/resources/app/css/bootstrap.min.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/app/css/styles.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/app/css/img/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/resources/app/css/img/app-icon72x72@2x.png">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/amazeui.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/app/css/admin.css">
+
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
   <script src="${pageContext.request.contextPath}/resources/app/js/html5shiv.js"></script>
@@ -32,7 +39,8 @@
     <tiles:insertAttribute name="footer" />
   </div>
   <script src="${pageContext.request.contextPath}/resources/app/js/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/app/js/bootstrap.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/app/js/common.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/app/js/amazeui.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/app/js/app.js"></script>
 </body>
 </html>
