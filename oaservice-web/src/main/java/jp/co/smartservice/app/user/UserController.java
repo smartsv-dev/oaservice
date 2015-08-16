@@ -1,7 +1,7 @@
 package jp.co.smartservice.app.user;
 
 import javax.inject.Inject;
-import javax.validation.groups.Default;
+import javax.validation.Valid;
 
 import org.dozer.Mapper;
 import org.springframework.data.domain.Page;
@@ -10,7 +10,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 import org.terasoluna.gfw.common.query.QueryEscapeUtils;
 
-import jp.co.smartservice.app.user.UserForm.UserRegister;
 import jp.co.smartservice.domain.common.constants.Constants;
 import jp.co.smartservice.domain.model.T001User;
 import jp.co.smartservice.domain.model.T001UserExample;
@@ -52,7 +50,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "register", method = RequestMethod.POST, params = "save")
-	public String register(@Validated({Default.class, UserRegister.class}) UserForm userForm,
+	public String register(@Valid UserForm userForm,
 			BindingResult bingdingResult, Model model, RedirectAttributes attributes) {
 
 		if (bingdingResult.hasErrors()) {

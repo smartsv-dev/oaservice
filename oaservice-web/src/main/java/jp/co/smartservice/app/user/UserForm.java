@@ -3,6 +3,15 @@ package jp.co.smartservice.app.user;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import jp.co.smartservice.app.common.validation.DateStringFormat;
+
 public class UserForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -19,22 +28,38 @@ public class UserForm implements Serializable {
 
 	private String password;
 
+	@NotNull
+	@Size(min = 1, max = 30)
 	private String nameKanji;
 
+	@NotNull
+	@Size(min = 1, max = 30)
 	private String nameKatakana;
 
+	@NotEmpty
+	@Size(min = 1, max = 1)
 	private String gender;
 
+	@DateStringFormat(pattern = "yyyyMMdd")
 	private String birthday;
 
+	@DateStringFormat(pattern = "yyyyMMdd")
 	private String joinedDate;
 
+	@NotNull
+	@Email
+	@Size(min = 1, max = 100)
 	private String email;
 
+	@Size(max = 300)
 	private String address;
 
+	@Size(max = 20)
+	@Pattern(regexp = "[0-9\\-]*")
 	private String telNo;
 
+	@NotEmpty
+	@Size(min = 1, max = 1)
 	private String kykType;
 
 	private String jobStat;

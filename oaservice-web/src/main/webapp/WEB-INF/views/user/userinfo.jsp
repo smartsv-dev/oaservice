@@ -43,7 +43,12 @@
           </div>
         </div>
       </div>
-
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <label class="am-u-sm-3 "></label>
+        <div class="am-u-sm-9">
+          <t:messagesPanel panelClassName="am-alert" panelTypeClassPrefix="am-alert-" outerElement="" innerElement="p"/>
+        </div>
+      </div>
       <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
         <form:form class="am-form am-form-horizontal"
                    action="${pageContext.request.contextPath}/user/register"
@@ -60,6 +65,7 @@
             <label for="user-name" class="am-u-sm-3 am-form-label">名前（漢字）</label>
             <div class="am-u-sm-9">
               <form:input path="nameKanji" id="user-name" placeholder="名前（漢字）を入力下さい。" />
+              <small><form:errors path="nameKanji" /></small>
               <small>フルネームを入力下さい。</small>
             </div>
           </div>
@@ -68,6 +74,7 @@
             <label for="user-name" class="am-u-sm-3 am-form-label">名前（カタカナ）</label>
             <div class="am-u-sm-9">
               <form:input path="nameKatakana" id="user-name" placeholder="名前（カタカナ）を入力下さい。" />
+              <small><form:errors path="nameKatakana" /></small>
               <small>カタカナを入力下さい。</small>
             </div>
           </div>
@@ -78,6 +85,7 @@
                <form:select path="gender" id="doc-select-1">
                  <form:options items="${CL_GENDER}" />
               </form:select>
+              <small><form:errors path="gender" /></small>
             </div>
           </div>
 
@@ -85,6 +93,7 @@
             <label for="user-email" class="am-u-sm-3 am-form-label">生年月日</label>
             <div class="am-u-sm-9">
               <form:input path="birthday" id="user-email" placeholder="生年月日を入力下さい。" />
+              <small><form:errors path="birthday" /></small>
               <small>８桁日付を入力下さい。YYYYMMDD</small>
             </div>
           </div>
@@ -93,6 +102,7 @@
             <label for="user-email" class="am-u-sm-3 am-form-label">入社時間</label>
             <div class="am-u-sm-9">
               <form:input path="joinedDate" id="user-email" placeholder="入社日を入力下さい。" />
+              <small><form:errors path="joinedDate" /></small>
               <small>８桁日付を入力下さい。YYYYMMDD</small>
             </div>
           </div>
@@ -101,6 +111,7 @@
             <label for="user-email" class="am-u-sm-3 am-form-label">E-mail</label>
             <div class="am-u-sm-9">
               <form:input path="email" id="user-email" placeholder="Emailを入力下さい。" />
+              <small><form:errors path="email" /></small>
               <small>よく使っているメールを入力下さい。</small>
             </div>
           </div>
@@ -109,6 +120,7 @@
             <label for="user-phone" class="am-u-sm-3 am-form-label">現住所</label>
             <div class="am-u-sm-9">
               <form:input path="address" id="user-phone" placeholder="住所を入力下さい。" />
+              <small><form:errors path="address" /></small>
               <small>詳しく住所を入力下さい。</small>
             </div>
           </div>
@@ -117,17 +129,18 @@
             <label for="user-phone" class="am-u-sm-3 am-form-label">携帯</label>
             <div class="am-u-sm-9">
               <form:input path="telNo" id="user-phone" placeholder="携帯番号を入力下さい。" />
-              <small>080-1111-2222</small>
+              <small><form:errors path="telNo" /></small>
+              <small>例：080-1111-2222</small>
             </div>
           </div>
 
           <div class="am-form-group">
-            <label for="user-name" class="am-u-sm-3 am-form-label">契約テープ</label>
+            <label for="user-name" class="am-u-sm-3 am-form-label">契約タイプ</label>
             <div class="am-u-sm-9">
               <form:select path="kykType" id="doc-select-1">
-                 <form:option value="" />
                  <form:options items="${CL_CONTRACT_TYPE}" />
               </form:select>
+              <small><form:errors path="kykType" /></small>
             </div>
           </div>
 

@@ -29,16 +29,16 @@ CREATE SEQUENCE seq01_user_id
   CACHE 1;
 
 
--- Table: todo
--- DROP TABLE todo;
+-- Table: t900_todo
+-- DROP TABLE t900_todo;
 
-CREATE TABLE todo
+CREATE TABLE t900_todo
 (
-  todo_id character varying(50) NOT NULL,
-  todo_title character varying(100),
+  todo_id varchar(50) NOT NULL,
+  todo_title varchar(100),
   finished boolean,
-  created_at timestamp with time zone,
-  CONSTRAINT todo_pk_001 PRIMARY KEY (todo_id)
+  created_at timestamp,
+  CONSTRAINT t900_todo_pk_1 PRIMARY KEY (todo_id)
 )
 
 
