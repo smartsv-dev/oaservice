@@ -1,4 +1,4 @@
-package jp.co.smartservice.domain.common.utils;
+package jp.co.smartservice.domain.common.helper;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
 public class PropertyHelper {
 
 	@Value("${user.ininPassword}")
-	private String initPassword;
+	public String initPassword;
 
-	public String getInitPassword() {
-		return this.initPassword;
-	}
+//	public String getInitPassword() {
+//		return this.initPassword;
+//	}
 
 }

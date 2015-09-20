@@ -1,4 +1,4 @@
-package jp.co.smartservice.domain.common.utils;
+package jp.co.smartservice.domain.common.helper;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;

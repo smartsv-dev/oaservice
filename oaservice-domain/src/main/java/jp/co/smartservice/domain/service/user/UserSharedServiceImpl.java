@@ -17,7 +17,7 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.sequencer.Sequencer;
 
 import jp.co.smartservice.domain.common.constants.Constants;
-import jp.co.smartservice.domain.common.utils.PropertyHelper;
+import jp.co.smartservice.domain.common.helper.PropertyHelper;
 import jp.co.smartservice.domain.model.T001User;
 import jp.co.smartservice.domain.model.T001UserExample;
 import jp.co.smartservice.domain.model.T001UserKey;
@@ -72,7 +72,7 @@ public class UserSharedServiceImpl implements UserSharedService {
 	public T001User register(T001User user) {
 
 		String userId = userIdSequencer.getNext();
-	    String password = passwordEncoder.encode(propertyHelper.getInitPassword());
+	    String password = passwordEncoder.encode(propertyHelper.initPassword);
 	    user.setUserId(userId);
 	    user.setPassword(password);
 	    user.setJobStat(Constants.JOB_STAT_JOINED);
